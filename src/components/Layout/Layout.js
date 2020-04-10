@@ -1,17 +1,31 @@
-import React, {Fragment} from "react";
+import React, {Component, Fragment} from "react";
 import './Layout.sass';
+import Toolbar from "../Navigation/Toolbar/Toolbar";
+import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 
-const layout = (props) => (
-    <Fragment>
-        <header className="App-header">
-            <h1>Burger Builder</h1>
-            <p>ReactJS Application</p>
-            <code>npm start</code>
-        </header>
-        <main className="Content">
-            {props.children}
-        </main>
-    </Fragment>
-);
+class Layout extends Component {
+    state = {
+        showDrawer: false
+    };
+    sideDrawerClosedHandler = () => {
+        this.setState({showDrawer: false})
+    };
+    sideDrawerToggleHandler = () => {
+        this.setState((prevState) => {
+            return {showDrawer: !prevState.showDrawer};
+        });
+    };
+    render() {
+        return (
+            <Fragment>
+                <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+                <SideDrawer open={this.state.showDrawer} closed={this.sideDrawerClosedHandler}/>
+                <main className="Content">
+                    {this.props.children}
+                </main>
+            </Fragment>
+        )
+    }
+}
 
-export default layout;
+export default Layout;
