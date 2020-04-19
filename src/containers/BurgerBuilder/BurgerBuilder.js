@@ -9,7 +9,7 @@ import WithErrorHandling from "../../hoc/WithErrorHandling/WithErrorHandling";
 
 let INGREDIENT_PRICES = null;
 
-class BurgerBuilder extends Component {
+class  BurgerBuilder extends Component {
     state = {
         ingredients: null,
         totalPrice: 4,
@@ -83,24 +83,16 @@ class BurgerBuilder extends Component {
         this.setState({purchasing: false});
     };
     purchaseContinueHandler = () => {
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice.toFixed(2),
-            costumer: {
-                name: 'Jacob',
-                address: {
-                    street: 'Main Road',
-                    postCode: 'ML14DH',
-                    country: 'UK'
-                },
-                delivery: 'Priority'
-            }
-        };
-        axios
-            .post('orders.json', order)
-            .then(r => this.setState({loading: false, purchasing: false}))
-            .catch(e => this.setState({loading: false, purchasing: false}));
+        const queryParams = [];
+        for (let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        }
+        queryParams.push('price=' + this.state.totalPrice);
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
     };
 
     render() {

@@ -1,12 +1,13 @@
 import React from 'react';
 import './NavigationItems.sass'
+import {NavLink} from "react-router-dom";
 
 const NavigationItems = (props) => {
     return (
         <div>
             <ul className="NavigationItems">
-                <li><a href="/" className="active">Burger Builder</a></li>
-                <li><a href="/">Checkout</a></li>
+                <li><NavLink to="/" exact>Burger Builder</NavLink></li>
+                <li><NavLink to="/orders">Checkout</NavLink></li>
             </ul>
         </div>
     );

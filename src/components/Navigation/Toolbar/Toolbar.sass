@@ -1,7 +1,7 @@
 .Toolbar
   height: 76px
   width: 100%
-  position: fixed
+  position: absolute
   top: 0
   left: 0
   background-color: #703b09
@@ -15,8 +15,11 @@
   .LogoWrapper
     width: auto
     height: 100%
+    margin: 0 15px
     img
       height: 100%
 @media screen and (max-width: 500px)
+  .Toolbar
+    justify-content: center
   .Toolbar .NavigationItems
     display: none
