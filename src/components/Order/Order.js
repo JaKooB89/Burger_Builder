@@ -9,6 +9,7 @@ const Order = (props) => {
     const ingredientOutput = ingredients.map(ig => {
         return <span key={ig.name}>{ig.name} <span>{ig.amount}</span></span>;
     })
+    console.log(props.client);
     return (
         <div className="Order">
             <p>Ingredients: {ingredientOutput}</p>

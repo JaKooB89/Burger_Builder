@@ -1,0 +1,24 @@
+.Input
+  label
+    font-weight: bold
+    display: block
+  input, textarea, select
+    outline: none
+    display: block
+    border: 1px solid slategray
+    background: white
+    text-align: center
+    padding: 8px 12px
+    margin: 4px auto
+  input
+    &:focus
+      outline: none
+      background: #eaeaea
+    &.Invalid
+      border-color: darkred
+  textarea
+    &.Invalid
+      border-color: darkred
+  select
+    &.Invalid
+      border-color: darkred
